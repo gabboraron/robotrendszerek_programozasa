@@ -53,3 +53,60 @@ elosztott szolgáltatások:
 - pont-pont működés alapján betanítás
 - a kezelő által adott utasítások rögzülnek és köhögi vissza a robot
 - learning by demostration: mikor a feladatokat tanítjuk be a robotnak
+
+
+## EA5 - moduláris bobotszoftverek 
+> - alacsony késleltetésű nagy sávszélű hálózatok
+> - elosztott szoftverrendszerek
+> - felhő alapú számítások
+> - LiDARok, térérzékelés, kinect
+> - VR / AR
+> - fogalmi szintű következtetés, ontológiák, nlp
+> - gépi tanulás
+> - akkumlátor technológiák
+
+- http://www.robothalloffame.org/
+- https://everydayrobots.com/
+- https://www.unlimited-robotics.com/
+- https://www.flr.io/
+
+komponens rendszerek:
+- Robot Technology Middleware: 
+  - https://www.corba.org/
+  - [RTC 1.1](https://www.omg.org/spec/RTC/1.1/About-RTC/)
+  - point-point komunikációs modell
+  - name service IP címre küldhető adatfolyamok
+- [microsoft robotics developer studio](https://en.wikipedia.org/wiki/Microsoft_Robotics_Developer_Studio)
+  - SOAP
+  - statefull kapcsolatra épít
+  - 2015-ben leállt
+- ROS
+  - XMLRPC http://wiki.ros.org/xmlrpcpp
+  - tipizált topicok
+  
+moduláris keretrendsterek kommunikációi:
+ - data flow
+   - egyirányú
+   - pipeline
+   - ROS-ban publish-subscribe filozófián alapul
+ - remote procedure call
+   - a fogyasztó használja a szolgáltató általa adott szolgáltatásokat
+   - szerializáltan történik
+   - adattípusok és interfészek nyelvfüggetlen kódolása
+   - [protocol buffer](https://developers.google.com/protocol-buffers)
+   - felhasználás pl: adatstreamek [visual servoingnál](https://en.wikipedia.org/wiki/Visual_servoing)
+
+komponensk keretrendszerke kapcsialktait tekintve a ROS és az RTM kapcsolatai megfeleltethetőek egymásnak
+
+Interface definition language ([IDL](https://www.techtarget.com/whatis/definition/IDL-interface-definition-language))
+
+![ ROS Services kapcsolatok](https://answers.ros.org/upfiles/13283489446262677.jpg)
+
+![socket - lollipop](https://openrtm.org/openrtm/sites/default/files/1681/provider_and_consumer_en.png)
+
+### ROS1 VS ROS2
+| ROS1 |ROS2 |
+|:----:|:----:|
+| ros core | [DDS](https://design.ros2.org/articles/ros_on_dds.html) - service discovery, interoparibilitás |
+| ros modulok -> paraméter szerver | ros modulok -> leterjednek a változtatások a nodeokba a paraméter szerverből |
+
