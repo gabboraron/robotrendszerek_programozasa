@@ -1,4 +1,4 @@
-# robotrendszerek programozása
+ # robotrendszerek programozása
 
 ## EA4
 elosztott szolgáltatások:
@@ -109,4 +109,41 @@ Interface definition language ([IDL](https://www.techtarget.com/whatis/definitio
 |:----:|:----:|
 | ros core | [DDS](https://design.ros2.org/articles/ros_on_dds.html) - service discovery, interoparibilitás |
 | ros modulok -> paraméter szerver | ros modulok -> leterjednek a változtatások a nodeokba a paraméter szerverből |
+
+
+## EA 5 - interpolációs módszer
+### Joint space motion (*point to point motion*; *joint interpolation*)
+- a robot pálya csuklótér beli lineáris interpolációval történik
+- Descartesi térben csak egyenest rajzolunk a térben
+
+![csuklomozgas példa](https://github.com/gabboraron/robotrendszerek_programozasa/blob/main/csuklomozgas_feladat.png)
+
+ahol
+```
+
+q1 = [q1A  q2A]
+q2 = [q1B  q2B]
+
+```
+
+A kérdés az, hogy mennyi idő alatt teljesíti a csuklótér beli mozgást
+
+![csuklómmozgas példa vége](https://github.com/gabboraron/robotrendszerek_programozasa/blob/main/csuklomozgas_feladat2.png)
+
+ Ezzel szemben ha cartesian térben maradok akkor a két pont között egy [pályamenti sebesség profil](https://www.linearmotiontips.com/how-to-calculate-velocity/)t (*trapezoid speed profiling*)
+ 
+ ![páylamenti  sebesség profil](https://www.mathworks.com/help/examples/robotics/win64/DesignATrajectoryWithVelocityLimitsUsingTrapVelTrajExample_03.png)
+ 
+[Peter Corke féle Matlab toolbox](https://petercorke.com/toolboxes/robotics-toolbox/)al modellezhető.
+
+### information pool:
+- Aktivátor szintű irányítás: mikor az impulzusok maguk fognak eljutni a kar végéig
+- TOR(Task oriented robot programming): task oritned runtimban van a szemtanikus technológiai leírás -> létrejön runtimeban a robot  utasításokat -> 
+- szemantikus robot képes lehet a task oriented robot programozásra 
+
+![szemanzikus robot](http://ai.stanford.edu/blog/assets/img/posts/2020-03-17-modeling-risky-humans/image1.png)
+
+Virca: http://www.virca.hu/
+
+
 
