@@ -145,5 +145,9 @@ A kérdés az, hogy mennyi idő alatt teljesíti a csuklótér beli mozgást
 
 Virca: http://www.virca.hu/
 
-
+## EA 6 - UR
+## EA 7 - UR + Fanuc
+## EA 8 Fanuc 
+- Fanuc webcontrol: https://github.com/ABC-iRobotics/fanuc-webcontrol
+- fanuc webcontrol programozás natívan: https://github.com/ABC-iRobotics/fanuc-webcontrol/tree/master/karel
 
