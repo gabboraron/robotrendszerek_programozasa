@@ -151,3 +151,59 @@ Virca: http://www.virca.hu/
 - Fanuc webcontrol: https://github.com/ABC-iRobotics/fanuc-webcontrol
 - fanuc webcontrol programozás natívan: https://github.com/ABC-iRobotics/fanuc-webcontrol/tree/master/karel
 
+## EA 9 robodk
+## EA 10 ROS
+## ROS1 
+debian alapon: https://wiki.ros.org/noetic
+
+`/opt/ros/noetic`
+
+- workspace 
+  - package 
+    - node1
+    - node2
+    - ...
+
+`roscore`-> `ROS launch` file amivel a nodeok indíthatóak
+
+- `catkin create pkg [packagename] [dependency]`
+- `catkin node`
+
+### noetic
+![node-master communication](https://adityakamath.github.io/assets/img/ros_master_node_topic.png)
+
+ROS master -> ROS node 
+ -> node1: publish topic1
+ -> node2: subscribe topic2
+
+Minden node több topicba is tud publikálni, de előbb a masternél feliratkozik rá, és szolgáltatásokat végezhet/kérhet le, pl: subscribe, publish
+
+## ROS2 
+debian alapon: https://docs.ros.org/en/humble/
+
+`/opt/ros/humble`
+
+- workspace 
+  - package 
+    - node1
+    - node2
+    - ...
+
+`ros2 launch package launch.py` file amivel a nodeok indíthatóak
+
+`ros2 pkg [packagename] [dependency]`
+
+### Humble
+![ros2 communication](https://i.ytimg.com/vi/aeOS9xqblrg/maxresdefault.jpg)
+
+Csak azonos hálózaton kell legyenek a nodeok és a kommunikáció megoldott a nodeok között, csak az alap beállításokat módosítani kell. 
+
+https://www.youtube.com/watch?v=aeOS9xqblrg
+
+
+subscribe példa: http://wiki.ros.org/ROS/Tutorials/WritingPublisherSubscriber%28python%29
+
+
+összeköthető rvizel is, ami egy robotvizualizációs eszköz
+
+
