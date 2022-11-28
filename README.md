@@ -1,6 +1,87 @@
  # robotrendszerek programozása
+*Tarsoly Sándor* és *Galambos Péter*
 
-## EA4
+## EA1 - robotprogramozási alapfogalmak
+robotkonfiguráció:
+- mozgás
+- I/O
+- megszakítások
+
+### robotprogram
+```
+technológia   --->    cella   --->   művelet és       --->   kódolt
+utasítás              terv           logikai terv            program
+```
+
+### robot cella:
+> ipari robotalkalmazás setén feladatot megoldó elhatárolt *(1...n)* robot egység a robot cella
+
+### robot nyelvek:
+- Pascal alapú:
+  - Karen
+  - AES
+  - ASEA
+  - rapid
+- KUKA -> KRL
+  - sunrise
+  - moonrise
+- universal
+  - URCAP
+  - URSCRIPT
+- fanuctp
+- robodk offline
+- val3
+
+robot nyelvek feladata:
+- mozzgási funkciók jól átgondolt ésszerű funkciók esetén
+- mozgás sebessége
+- gyorsulás
+- interpolációs üzemmódok
+- csuklóinterpoláció
+  - nem kooridnált
+  - körintelpoláció
+- technológiai utasítás: kapuk, terek, leírás, megfogalmazás
+- cella terv: gépész munka robot kiválasztás
+- logikai terv: állapot - átmenet gráf, lépésenkénti teszt
+- robot program: programozás után lépésenkénti teszt
+
+önálló, vagy összetett robotrendszer - megoldható problémák:
+- struktúrált: egy robottal megoldható
+- nem struktúrált: több robot szükséges
+
+## EA2 -I/O csatornák
+I/O csatornák
+- analóg - 0-10V /-10+10V /420V
+- digitális - 24V
+
+gyártók:
+- peperland flux
+- omron
+- badlux
+
+- szenzorok:
+  - jelnelét érzékelők; lehet: optikai, ultrahang, digitális, stb
+  - közelség érzékelők; lehet: optikai, ultrahang, digitális, stb
+  - kamerák: lidar, rgb, pontfelhő, stb
+- aktivátorok:
+  - **megfogó** pneumatikus
+  - egyszeres, kétszeres működésű
+  - elektromos működésű
+    - motoros
+    - solenoidos
+    - servo
+  - vákuumos
+  - rotációs
+  - többujjas - dextrose gripper
+- csatolók: 
+  - ethenet
+    - TCP/UDP
+      - kafka, mqtt, grpc, znq, rest, mosquito
+  - UART
+  - RS32
+  - RS485
+  
+## EA3 - EA4
 elosztott szolgáltatások:
 ### [MQTT](https://mqtt.org/):
 
@@ -145,8 +226,55 @@ A kérdés az, hogy mennyi idő alatt teljesíti a csuklótér beli mozgást
 
 Virca: http://www.virca.hu/
 
-## EA 6 - UR
-## EA 7 - UR + Fanuc
+## EA 6 - UR (Universal robot)
+### UR Sim
+Hogy aktív legyen a robot modell mindenképp be kell kapcsolni a robotkart a *Robot Status* menüben.
+- payload tömege nem lehet üres
+- a robotkar súlyát is bele kell számolni
+
+#### robot program írása
+1. startpozíció
+   - mozgáscsoportok
+   - nyitott megfogóval kell indítani **!**
+2. mozgás adott pozícióba koordináták szerint 
+  - mozgáspontnak lehet neve
+  - joint interpolációt használunk a mozgáspontoknál
+  - control path-t használunk amozgás útja során
+  - kis kocka jelzi a tömeg változást
+3. adott pozícióban a megfogók állapotát meg kell adni
+   - várakozás is szükséges a megfogó mozgatás beállítása során amíg a megfogó mozog.
+   - 
+4. `SubProgram` -okba kiszervezés
+5. `mqtt_init("tcp_address")` - el lehet inputra/outputra várakozni, vagy szenzort beolvasni
+    - `mqtt_qos = 2`
+6. `29900`as porton kapcsolódik
+
+## EA 7 - UR - FANUC-roboguide
+### UR
+- [OVERVIEW OF CLIENT INTERFACES](https://www.universal-robots.com/articles/ur/interface-communication/overview-of-client-interfaces/)
+- [REMOTE CONTROL VIA TCP/IP](https://www.universal-robots.com/articles/ur/interface-communication/remote-control-via-tcpip/)
+  - **RPC (Remote Procedure Call method):** XML-RPC is a Remote Procedure Call method that uses XML to transfer data between programs over sockets. With it, the UR controller can call methods/functions (with parameters) on a remote program/server and get back structured data. By using it, a complex calculation which is not available in URScript can be performed. In addition, other software packages can be combined with URScript. 
+  - **RTDE (Real-Time Data Exchange):** RTDE is designed as robust replacement for the real-time interface. This allows UR controller to transmit custom state data and accept custom set-points and register data. 
+
+- a robot kotorller mindig a biztonsági kerítésen kívűl helyezkedik el
+- fanucnál egy robotkontorller több robotkart is vezérelhet, URnál egy robotkontroller csak egy kart vezérelhet.
+- kulcsos kapcsoló állása:
+  - auto: automata verzió
+  - T1: van sebesség biztonsági korlátozás
+  - T2: nincs sebesség biztonsági korlát
+- kontorlleren biztonsági gombok is vannak amiket a betaníás ideje alatt nyomva tartunk
+- group mask feladata, hogy adott mozgáspontokban az álapotokat definiáljuk
+- robot kar szabadságfoka is állapota a robot pozíciónak, ezeket a pozíció utáni számokkal jelöljük
+
+### roboguide
+- aktív és passzív elemek is megadhatóak, mint asztalok, emberek, kerítések, munkadarabok, eszközök, gépek.
+
+ha koordináta rendszert szerkesztünk és hozunk létre akkor fontos, hogy a többi eszközzel használható legyen.
+
+loopban fut mint az arduino
+
+
+
 ## EA 8 Fanuc 
 - Fanuc webcontrol: https://github.com/ABC-iRobotics/fanuc-webcontrol
 - fanuc webcontrol programozás natívan: https://github.com/ABC-iRobotics/fanuc-webcontrol/tree/master/karel
