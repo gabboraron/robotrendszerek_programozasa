@@ -81,7 +81,7 @@ gyártók:
   - RS32
   - RS485
   
-## EA3 - EA4
+## EA3
 elosztott szolgáltatások:
 ### [MQTT](https://mqtt.org/):
 
@@ -136,7 +136,7 @@ elosztott szolgáltatások:
 - learning by demostration: mikor a feladatokat tanítjuk be a robotnak
 
 
-## EA5 - moduláris bobotszoftverek 
+## EA4 - moduláris bobotszoftverek 
 > - alacsony késleltetésű nagy sávszélű hálózatok
 > - elosztott szoftverrendszerek
 > - felhő alapú számítások
@@ -234,7 +234,7 @@ Hogy aktív legyen a robot modell mindenképp be kell kapcsolni a robotkart a *R
 
 #### robot program írása
 1. startpozíció
-   - mozgáscsoportok
+   - mozgáscsoportok - egy csopportban 9 lehet
    - nyitott megfogóval kell indítani **!**
 2. mozgás adott pozícióba koordináták szerint 
   - mozgáspontnak lehet neve
@@ -279,7 +279,24 @@ loopban fut mint az arduino
 - Fanuc webcontrol: https://github.com/ABC-iRobotics/fanuc-webcontrol
 - fanuc webcontrol programozás natívan: https://github.com/ABC-iRobotics/fanuc-webcontrol/tree/master/karel
 
+A roboguide használható akkor is ha nincs teach pad amivel közvetlen lehet
+- `Edit` - a legutóbb szerkesztett programra ugrik
+- kódban `--` a komment
+
+[webcontroller]()https://github.com/ABC-iRobotics/fanuc-webcontrol)
+
+Karel progrramok már nem tartalmaznak mozgásutasításokat.
+
+`Enable vision` engedélyezése szükséges.
+
+kalibrálás:
+- kalibrációs pontokhoz tudjuk ráirányítani a robot fejét. 
+- tized miliméternél nem lesz jobb eredmény várhatóan egy valós ipari környezetben
+
 ## EA 9 robodk
+
+
+
 ## EA 10 ROS
 ## ROS1 
 debian alapon: https://wiki.ros.org/noetic
