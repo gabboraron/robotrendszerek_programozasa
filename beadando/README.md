@@ -14,3 +14,5 @@ Running the container: `docker run <container_name> <input_picture_name.png> <ou
 Example: `docker run oubot_ws input.png output.txt`
 
 Container available at: https://hub.docker.com/r/oubot/oubot_ws
+
+Full presentation: https://www.youtube.com/watch?v=g8N-w67Fdpw
